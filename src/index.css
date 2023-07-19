@@ -1,0 +1,43 @@
+* {
+    /* transition: all ease 300ms; */
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+body {
+    position: relative;
+    height: 100vh;
+    font-size: 1.6rem;
+    margin: 0px;
+    background-color: black;
+    color: white;
+}
+
+:root {
+    /* color */
+    --primary-color: #000;
+    --text-color: #fff;
+    --nav-list-hover-color: rgb(158 158 158 / 10%);
+    --btn-color: rgb(0 120 199);
+
+    /* transition */
+    --trans-01: all 100ms ease;
+    --trans-02: all 200ms ease;
+    --trans-03: all 300ms ease;
+    --trans-04: all 400ms ease;
+    --trans-05: all 500ms ease;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
