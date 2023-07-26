@@ -29,6 +29,7 @@
 .left-side-bar .container {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .left-side-bar .logo {
@@ -64,7 +65,7 @@
 }
 
 .nav-list {
-    height: 569.6px;
+    /* height: 569.6px; */
     flex-shrink: 0;
 }
 
@@ -127,6 +128,28 @@
 .more {
     padding: 12px;
     margin: 2px 0px;
+    margin-top: auto;
     display: flex;
     align-items: center;
+}
+
+/* ========= Search Bar ========== */
+.container-search-bar,
+.container-notification-bar {
+    height: 100%;
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    left: -400px;
+    /* opacity: 0; */
+    background-color: var(--primary-color);
+    transition: var(--trans-04);
+    border: 0.8px solid rgb(204 204 204 / 20%);
+    border-radius: 0 16px 16px 0;
+}
+
+.left-side-bar.in-search .container-search-bar,
+.left-side-bar.in-notification .container-notification-bar {
+    /* opacity: 1; */
+    left: 72px;
 }

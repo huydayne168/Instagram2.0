@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import styles from "./SideBar.module.css";
 import LogoText from "./SideBarIcon/LogoText";
 import LogoImg from "./SideBarIcon/LogoImg";
@@ -9,32 +9,72 @@ import ReelsIcon from "./SideBarIcon/ReelsIcon";
 import MessageIcon from "./SideBarIcon/MessageIcon";
 import NotificationIcon from "./SideBarIcon/NotificationIcon";
 import NewIcon from "./SideBarIcon/NewIcon";
+import SettingIcon from "./SideBarIcon/SettingIcon";
+import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
+import NotificationBar from "./NotificationBar";
 const SideBar = () => {
     // Context:
+    const init = {
+        isSearch: false,
+        isNotification: false,
+    };
+
+    function reducer(state, action) {
+        switch (action.type) {
+            case "SEARCH":
+                return {
+                    isSearch: !state.isSearch,
+                    isNotification: false,
+                };
+            case "NOTIFICATION":
+                return {
+                    isSearch: false,
+                    isNotification: !state.isNotification,
+                };
+            default:
+                break;
+        }
+    }
+
+    const [state, dispatch] = useReducer(reducer, init);
+
+    // show Search Bar function:
+    function showSearch() {
+        dispatch({ type: "SEARCH" });
+    }
+
+    // show Notification Bar function:
+    function showNotification() {
+        dispatch({ type: "NOTIFICATION" });
+    }
 
     return (
-        <div className={styles["left-side-bar"]}>
+        <div
+            className={`${styles["left-side-bar"]} ${
+                state.isSearch ? styles["in-search"] : ""
+            } ${state.isNotification ? styles["in-notification"] : ""}`}
+        >
             <div className={styles["container"]}>
                 {/* LOGO */}
-                <a href="#!">
-                    <div className={styles["logo"]}>
-                        <a href="#home" className={styles["logo-text"]}>
-                            {/* Logo Text Here */}
-                            <LogoText />
-                        </a>
 
-                        <a href="#home" className={styles["logo-img"]}>
-                            {/* Logo image here */}
-                            <LogoImg />
-                        </a>
-                    </div>
-                </a>
+                <div className={styles["logo"]}>
+                    <Link to="/" className={styles["logo-text"]}>
+                        {/* Logo Text Here */}
+                        <LogoText />
+                    </Link>
+
+                    <Link to="/" className={styles["logo-img"]}>
+                        {/* Logo image here */}
+                        <LogoImg />
+                    </Link>
+                </div>
 
                 {/* Navigation list */}
                 <div className={styles["nav-list"]}>
                     <div className={styles["nav-list__wrapper"]}>
                         {/* Home */}
-                        <a href="#home">
+                        <Link to="/">
                             <div
                                 className={`${styles["nav-list__item"]} ${styles["home"]} `}
                             >
@@ -46,11 +86,12 @@ const SideBar = () => {
                                     Trang chủ
                                 </div>
                             </div>
-                        </a>
+                        </Link>
 
                         {/* Search */}
                         <div
                             className={`${styles["nav-list__item"]} ${styles["search"]} `}
+                            onClick={showSearch}
                         >
                             <div className={styles["icon"]}>
                                 {/* Search icon here */}
@@ -103,6 +144,7 @@ const SideBar = () => {
                         {/* Notification */}
                         <div
                             className={`${styles["nav-list__item"]} ${styles["notification"]} `}
+                            onClick={showNotification}
                         >
                             <div className={styles["icon"]}>
                                 {/* Notification Icon here */}
@@ -129,7 +171,7 @@ const SideBar = () => {
                             >
                                 <div className={styles["icon"]}>
                                     <img
-                                        src="./asset/image/avatar.jpg"
+                                        src="https://i.pinimg.com/originals/b4/1a/04/b41a04050d7f84ee62d88f64484399ba.png"
                                         alt="avatar"
                                     />
                                 </div>
@@ -143,135 +185,20 @@ const SideBar = () => {
 
                 <div className={styles["more"]}>
                     <div className={`${styles["icon"]} ${styles["setting"]}`}>
-                        <svg
-                            aria-label="Cài đặt"
-                            className="_ab6-"
-                            color="rgb(245, 245, 245)"
-                            fill="rgb(245, 245, 245)"
-                            height="24"
-                            role="img"
-                            viewBox="0 0 24 24"
-                            width="24"
-                        >
-                            <line
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                x1="3"
-                                x2="21"
-                                y1="4"
-                                y2="4"
-                            ></line>
-                            <line
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                x1="3"
-                                x2="21"
-                                y1="12"
-                                y2="12"
-                            ></line>
-                            <line
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                x1="3"
-                                x2="21"
-                                y1="20"
-                                y2="20"
-                            ></line>
-                        </svg>
+                        <SettingIcon />
                     </div>
                     <div className={styles["category"]}>Xem thêm</div>
                 </div>
             </div>
 
-            {/* <div className="container-search-bar">
-                <div class="wrapper">
-                    <div class="heading">
-                        <h2>Tìm kiếm</h2>
-                    </div>
-                    <div class="search-input">
-                        <input
-                            type="text"
-                            name="search"
-                            id="search"
-                            placeholder="Tìm kiếm"
-                        />
-                    </div>
-                    <div class="latest-search">
-                        <div class="heading">
-                            <p>Gần đây</p>
-                            <div class="btn">Xóa tất cả</div>
-                        </div>
-                        <div class="body">
-                            <div class="search-list__item">
-                                <div class="avatar">
-                                    <img
-                                        src="https://i.pinimg.com/236x/ea/77/1a/ea771a1d4d83b0f61660194fa579619a.jpg"
-                                        alt="avatar"
-                                    />
-                                </div>
-                                <div class="desc">
-                                    <div class="name">pdqn_n</div>
-                                    <div class="real-name">Phạm Diễm Quỳnh</div>
-                                </div>
-                                <div class="del-btn btn">
-                                    <svg
-                                        aria-label="Đóng"
-                                        class="x1lliihq x1n2onr6"
-                                        color="rgb(142, 142, 142)"
-                                        fill="rgb(142, 142, 142)"
-                                        height="16"
-                                        role="img"
-                                        viewBox="0 0 24 24"
-                                        width="16"
-                                    >
-                                        <title>Đóng</title>
-                                        <polyline
-                                            fill="none"
-                                            points="20.643 3.357 12 12 3.353 20.647"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="3"
-                                        ></polyline>
-                                        <line
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="3"
-                                            x1="20.649"
-                                            x2="3.354"
-                                            y1="20.649"
-                                            y2="3.354"
-                                        ></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {/* Search Bar */}
+            <div className={styles["container-search-bar"]}>
+                <SearchBar />
             </div>
-
-            <div class="container-notification-bar">
-                <div class="wrapper">
-                    <div class="heading">
-                        <h2>Thông báo</h2>
-                    </div>
-
-                    <div class="body">
-                        <h3>Bạn chưa có thông báo nào</h3>
-                    </div>
-                </div>
-            </div> */}
+            {/* Notification Bar */}
+            <div className={styles["container-notification-bar"]}>
+                <NotificationBar />
+            </div>
         </div>
     );
 };

@@ -1,0 +1,128 @@
+/* ==================Right side bar================== */
+
+.right-side-bar {
+    padding-top: 42px;
+    width: 319px;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side-bar .header,
+.right-side-bar .suggestion-list__item,
+.right-side-bar .body .heading {
+    display: flex;
+    align-items: center;
+}
+
+.right-side-bar .btn {
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 13px;
+    color: rgb(0 120 199);
+}
+
+.right-side-bar .btn:hover {
+    color: #fff;
+}
+
+.right-side-bar .header {
+    margin-bottom: 10px;
+}
+
+.right-side-bar .header .name {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.right-side-bar .header .real-name {
+    font-weight: 300;
+}
+
+.right-side-bar .header .avatar {
+    margin-right: 18px;
+}
+
+.right-side-bar .body {
+    margin-bottom: 12px;
+}
+
+.right-side-bar .body .heading {
+    padding: 4px 0px;
+}
+
+.right-side-bar .body .heading p {
+    font-weight: 600;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.right-side-bar .body .heading .btn {
+    color: #fff;
+}
+
+.right-side-bar .header .avatar img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+
+.right-side-bar .suggestion-list {
+    margin-bottom: 12px;
+}
+
+.right-side-bar .suggestion-list__item {
+    padding: 8px 0px 8px 4px;
+}
+
+.right-side-bar .suggestion-list__item .avatar {
+    margin-right: 12px;
+}
+
+.right-side-bar .suggestion-list__item .avatar img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.right-side-bar .suggestion-list__item .desc .name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.right-side-bar .suggestion-list__item .desc .followed-by {
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.right-side-bar .footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.right-side-bar .footer .app-infor {
+    margin-bottom: 19px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 6px;
+    column-gap: 10px;
+}
+
+.right-side-bar .footer .app-infor a {
+    height: 15px;
+    padding-bottom: -2px;
+}
+
+.right-side-bar .footer .app-infor a:hover {
+    border-bottom: 1px solid #ccc;
+}
+
+.right-side-bar .footer .app-infor a,
+.right-side-bar .footer .copy-right {
+    color: #ccc;
+    font-weight: 300;
+    font-size: 13px;
+    text-decoration: none;
+    opacity: 0.8;
+}
